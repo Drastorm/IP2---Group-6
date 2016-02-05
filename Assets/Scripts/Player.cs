@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
 	public float fireRate;
 	private float nextFire;
 */
+	public static Player player;
+
 	Controller2D controller;
 
 	public float movementSpeed = 5f;
@@ -51,6 +53,19 @@ public class Player : MonoBehaviour
 	public float fireRate;
 	private float nextFire;
 
+	void Awake ()
+	{
+		if (player == null)
+		{
+			DontDestroyOnLoad (gameObject);
+			player = this;
+		}
+		else if (player != this)
+		{
+			Destroy (gameObject);
+		}
+	}
+
 	void Start ()
 	{
 		controller = GetComponent<Controller2D>();
@@ -58,6 +73,8 @@ public class Player : MonoBehaviour
 		gravity = -(2 * JumpHeight) / Mathf.Pow (timeToJumpApex, 2);
 		jumpVelocity = Mathf.Abs (gravity) * timeToJumpApex;
 		//print ("Gravity: " + gravity + " Jump Velocity: " + jumpVelocity);
+
+		gameObject.name = "Player1";
 	}
 
 	void Update ()

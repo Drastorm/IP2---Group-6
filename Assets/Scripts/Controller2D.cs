@@ -3,11 +3,19 @@ using System.Collections;
 
 public class Controller2D : RaycastController
 {
+	public Respawn respawn;
+
 	float maxClimbAngle = 80;
 	float maxDescendAngle = 80;
 
 	public CollisionInfo collisions;
-	
+
+	void Awake ()
+	{
+		GameObject respawnPoint = GameObject.FindGameObjectWithTag("Respawn");
+		respawn = respawnPoint.GetComponent<Respawn> ();
+	}
+
 	public override void Start () 
 	{
 		base.Start ();
@@ -56,6 +64,12 @@ public class Controller2D : RaycastController
 				if (hit.distance == 0)
 				{
 					continue;
+				}
+
+				if (hit.collider.tag == "Spike")
+				{
+					respawn.StartRespawn ();
+					Destroy (gameObject);
 				}
 				/*
 				velocity.x = (hit.distance - skinWidth) * directionX;
@@ -118,6 +132,12 @@ public class Controller2D : RaycastController
 
 			if (hit)
 			{
+				if (hit.collider.tag == "Spike")
+				{
+					respawn.StartRespawn ();
+					Destroy (gameObject);
+				}
+
 				velocity.y = (hit.distance - skinWidth) * directionY;
 				rayLength = hit.distance;
 

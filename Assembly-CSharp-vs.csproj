@@ -49,8 +49,10 @@
      <Compile Include="Assets\Scripts\Controller2D.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\RaycastController.cs" />
+     <Compile Include="Assets\Scripts\Respawn.cs" />
      <Compile Include="Assets\Scripts\Shot.cs" />
      <Compile Include="Assets\Scripts\ShotSpawnRotate.cs" />
+     <Compile Include="Assets\Scripts\Timer.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.8/Standalone/UnityEngine.UI.dll</HintPath>
  </Reference>
