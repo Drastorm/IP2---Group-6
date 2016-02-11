@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof (Controller2D))]
-public class Player : MonoBehaviour 
+[RequireComponent (typeof (P1Controller2D))]
+public class Player1 : MonoBehaviour 
 {
 	/*
 	public float movementSpeed;
@@ -28,9 +28,9 @@ public class Player : MonoBehaviour
 	public float fireRate;
 	private float nextFire;
 */
-	public static Player player;
+	public static Player1 player;
 
-	Controller2D controller;
+	P1Controller2D controller;
 
 	public float movementSpeed = 5f;
 	public float JumpHeight = 5f;
@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
 	public Transform shotSpawn;
 	public float fireRate;
 	private float nextFire;
+	private bool hasFired = false;
 
 	void Awake ()
 	{
@@ -68,7 +69,7 @@ public class Player : MonoBehaviour
 
 	void Start ()
 	{
-		controller = GetComponent<Controller2D>();
+		controller = GetComponent<P1Controller2D>();
 
 		gravity = -(2 * JumpHeight) / Mathf.Pow (timeToJumpApex, 2);
 		jumpVelocity = Mathf.Abs (gravity) * timeToJumpApex;
@@ -79,7 +80,7 @@ public class Player : MonoBehaviour
 
 	void Update ()
 	{
-		Vector2 movement = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical"));
+		Vector2 movement = new Vector2 (Input.GetAxisRaw ("P1Horizontal"), Input.GetAxisRaw ("P1Vertical"));
 		int wallDirX = (controller.collisions.left)? -1: 1;
 
 		float targetVelocityX = movement.x * movementSpeed;
@@ -101,13 +102,22 @@ public class Player : MonoBehaviour
 			velocity.y = 0;
 		}
 
-		if (Input.GetMouseButtonDown(0) && Time.time > nextFire && wallSliding == false)
+		if (Input.GetAxisRaw ("P1Fire1") != 0 && Time.time > nextFire && wallSliding == false)
 		{
-			nextFire = Time.time + fireRate;
-			Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+			if (hasFired == false)
+			{
+				nextFire = Time.time + fireRate;
+				Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+				hasFired = true;
+			}
 		}
 
-		if (Input.GetKeyDown (KeyCode.Space))
+		if (Input.GetAxisRaw ("P1Fire1") == 0)
+		{
+			hasFired = false;
+		}
+
+		if (Input.GetButtonDown ("P1Jump"))
 		{
 			if (wallSliding == true)
 			{

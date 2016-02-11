@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Controller2D : RaycastController
+public class P1Controller2D : RaycastController
 {
 	public Respawn respawn;
 
@@ -68,7 +68,7 @@ public class Controller2D : RaycastController
 
 				if (hit.collider.tag == "Spike")
 				{
-					respawn.StartRespawn ();
+					respawn.P1StartRespawn ();
 					Destroy (gameObject);
 				}
 				/*
@@ -134,7 +134,7 @@ public class Controller2D : RaycastController
 			{
 				if (hit.collider.tag == "Spike")
 				{
-					respawn.StartRespawn ();
+					respawn.P1StartRespawn ();
 					Destroy (gameObject);
 				}
 

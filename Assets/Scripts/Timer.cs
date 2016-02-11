@@ -10,7 +10,7 @@ public class Timer : MonoBehaviour
 	
 	void OnGUI()
 	{
-		timeLimit -= (Time.deltaTime / 2);
+		timeLimit -= (Time.deltaTime / 2) ;
 
 		minutes = Mathf.Floor(timeLimit / 60);
 		seconds = Mathf.Floor(timeLimit - minutes * 60);
