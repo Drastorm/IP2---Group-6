@@ -102,6 +102,7 @@ public class Player1 : MonoBehaviour
 			velocity.y = 0;
 		}
 
+		/*
 		if (Input.GetAxisRaw ("P1Fire1") != 0 && Time.time > nextFire && wallSliding == false)
 		{
 			if (hasFired == false)
@@ -116,7 +117,7 @@ public class Player1 : MonoBehaviour
 		{
 			hasFired = false;
 		}
-
+		*/
 		if (Input.GetButtonDown ("P1Jump"))
 		{
 			if (wallSliding == true)

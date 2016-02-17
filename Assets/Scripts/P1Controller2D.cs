@@ -39,6 +39,8 @@ public class P1Controller2D : RaycastController
 			VerticalCollisions (ref velocity);
 		}
 		transform.Translate (velocity);
+
+		InnerCollisions (ref velocity);
 	}
 
 	void HorizontalCollisions (ref Vector3 velocity)
@@ -71,6 +73,7 @@ public class P1Controller2D : RaycastController
 					respawn.P1StartRespawn ();
 					Destroy (gameObject);
 				}
+
 				/*
 				velocity.x = (hit.distance - skinWidth) * directionX;
 				rayLength = hit.distance;
@@ -170,11 +173,33 @@ public class P1Controller2D : RaycastController
 		}
 	}
 
-	void ClimbSlope(ref Vector3 velocity, float slopeAngle) {
+	void  InnerCollisions (ref Vector3 velocity)
+	{
+		float directionY = Mathf.Sign (velocity.y);
+		float rayLength = Mathf.Abs (velocity.y) + skinWidth;
+		
+		Vector2 rayOrigin = raycastOrigins.inner;
+		RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.up, rayLength, collisionMask);
+		
+		Debug.DrawRay (rayOrigin, Vector2.up * directionY * rayLength, Color.red);
+		
+		if (hit)
+		{
+			if (hit.collider.tag == "Block")
+			{
+				respawn.P1StartRespawn ();
+				Destroy (gameObject);
+			}
+		}
+	}
+
+	void ClimbSlope(ref Vector3 velocity, float slopeAngle) 
+	{
 		float moveDistance = Mathf.Abs (velocity.x);
 		float climbVelocityY = Mathf.Sin (slopeAngle * Mathf.Deg2Rad) * moveDistance;
 		
-		if (velocity.y <= climbVelocityY) {
+		if (velocity.y <= climbVelocityY) 
+		{
 			velocity.y = climbVelocityY;
 			velocity.x = Mathf.Cos (slopeAngle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign (velocity.x);
 			collisions.below = true;

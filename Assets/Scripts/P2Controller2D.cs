@@ -39,6 +39,8 @@ public class P2Controller2D : RaycastController
 			VerticalCollisions (ref velocity);
 		}
 		transform.Translate (velocity);
+
+		InnerCollisions (ref velocity);
 	}
 	
 	void HorizontalCollisions (ref Vector3 velocity)
@@ -166,6 +168,26 @@ public class P2Controller2D : RaycastController
 					velocity.x = (hit.distance - skinWidth) * directionX;
 					collisions.slopeAngle = slopeAngle;
 				}
+			}
+		}
+	}
+
+	void  InnerCollisions (ref Vector3 velocity)
+	{
+		float directionY = Mathf.Sign (velocity.y);
+		float rayLength = Mathf.Abs (velocity.y) + skinWidth;
+		
+		Vector2 rayOrigin = raycastOrigins.inner;
+		RaycastHit2D hit = Physics2D.Raycast (rayOrigin, Vector2.up, rayLength, collisionMask);
+		
+		Debug.DrawRay (rayOrigin, Vector2.up * directionY * rayLength, Color.red);
+		
+		if (hit)
+		{
+			if (hit.collider.tag == "Block")
+			{
+				respawn.P2StartRespawn ();
+				Destroy (gameObject);
 			}
 		}
 	}

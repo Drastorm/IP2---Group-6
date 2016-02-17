@@ -15,7 +15,7 @@ public class Player2 : MonoBehaviour
 	public Vector2 wallJumpClimb;
 	public Vector2 wallJumpOff;
 	public Vector2 wallLeap;
-	public bool facingRight = true;
+	public bool facingRight = false;
 	float gravity;
 	float jumpVelocity;
 	Vector3 velocity;
@@ -49,7 +49,6 @@ public class Player2 : MonoBehaviour
 		
 		gravity = -(2 * JumpHeight) / Mathf.Pow (timeToJumpApex, 2);
 		jumpVelocity = Mathf.Abs (gravity) * timeToJumpApex;
-		//print ("Gravity: " + gravity + " Jump Velocity: " + jumpVelocity);
 		
 		gameObject.name = "Player2";
 	}
@@ -77,7 +76,8 @@ public class Player2 : MonoBehaviour
 		{
 			velocity.y = 0;
 		}
-		
+
+		/*
 		if (Input.GetAxisRaw ("P2Fire1") != 0 && Time.time > nextFire && wallSliding == false)
 		{
 			if (hasFired == false)
@@ -92,7 +92,7 @@ public class Player2 : MonoBehaviour
 		{
 			hasFired = false;
 		}
-		
+		*/
 		if (Input.GetButtonDown ("P2Jump"))
 		{
 			if (wallSliding == true)
@@ -122,8 +122,7 @@ public class Player2 : MonoBehaviour
 		
 		velocity.y += gravity * Time.deltaTime;
 		controller.Move (velocity * Time.deltaTime);
-		
-		//float moveHorizontal = Input.GetAxisRaw ("Horizontal");
+
 		if (movement.x > 0 && !facingRight)
 		{
 			Flip ();
