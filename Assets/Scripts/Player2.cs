@@ -7,7 +7,8 @@ public class Player2 : MonoBehaviour
 	public static Player2 player;
 	
 	P2Controller2D controller;
-	
+
+	public Transform playerSprite;
 	public float movementSpeed;
 	public float JumpHeight;
 	public float timeToJumpApex = 0.5f;
@@ -55,7 +56,7 @@ public class Player2 : MonoBehaviour
 	
 	void Update ()
 	{
-		Vector2 movement = new Vector2 (Input.GetAxisRaw ("P2Horizontal"), Input.GetAxisRaw ("P2Vertical"));
+		Vector2 movement = new Vector2 (Input.GetAxisRaw ("P2HorizontalLStick"), Input.GetAxisRaw ("P2VerticalLStick"));
 		int wallDirX = (controller.collisions.left)? -1: 1;
 		
 		float targetVelocityX = movement.x * movementSpeed;
@@ -126,20 +127,16 @@ public class Player2 : MonoBehaviour
 		if (movement.x > 0 && !facingRight)
 		{
 			Flip ();
-			shotSpawn.rotation = Quaternion.Euler (0, 0, 0);
 		}
 		else if (movement.x < 0 && facingRight)
 		{
 			Flip ();
-			shotSpawn.rotation = Quaternion.Euler (0, 180, 0);
 		}
 	}
 
 	void Flip ()
 	{
 		facingRight = !facingRight;
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
+		playerSprite.localScale *= -1;
 	}
 }

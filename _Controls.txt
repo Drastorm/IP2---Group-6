@@ -1,0 +1,23 @@
+Dictator controls:
+
+Q & E - select the previous or next block type, respectively.
+
+Space bar - spawn selected block type.
+
+A & D - move spawned (unplaced) block(s) left or right, respectively.
+
+S - move spawned (unplaced) block(s) down an extra unit.
+
+Left shift - rotate spawned (unplaced) block(s) 90 degress clockwise.
+
+
+**********
+
+
+Player controls:
+
+Left and right on left joystick - move left or right, respectively.
+
+A button - jump.
+
+Right trigger - shoot

@@ -34,7 +34,10 @@ public class RaycastController : MonoBehaviour
 		raycastOrigins.bottomRight = new Vector2 (bounds.max.x, bounds.min.y);
 		raycastOrigins.topLeft = new Vector2 (bounds.min.x, bounds.max.y);
 		raycastOrigins.topRight = new Vector2 (bounds.max.x, bounds.max.y);
-		raycastOrigins.inner = new Vector2 (bounds.center.x, bounds.center.y);
+		raycastOrigins.innerBottomLeft = new Vector2 (bounds.min.x + 0.05f, bounds.min.y + 0.05f);
+		raycastOrigins.innerBottomRight = new Vector2 (bounds.max.x - 0.05f, bounds.min.y + 0.05f);
+		raycastOrigins.innerTopLeft = new Vector2 (bounds.min.x + 0.05f, bounds.max.y - 0.05f);
+		raycastOrigins.innerTopRight = new Vector2 (bounds.max.x - 0.05f, bounds.max.y - 0.05f);
 	}
 	
 	public void CalculateRaySpacing () 
@@ -53,6 +56,7 @@ public class RaycastController : MonoBehaviour
 	{
 		public Vector2 topLeft, topRight;
 		public Vector2 bottomLeft, bottomRight;
-		public Vector2 inner;
+		public Vector2 innerTopLeft, innerTopRight;
+		public Vector2 innerBottomLeft, innerBottomRight;
 	}
 }

@@ -32,6 +32,7 @@ public class Player1 : MonoBehaviour
 
 	P1Controller2D controller;
 
+	public Transform playerSprite;
 	public float movementSpeed = 5f;
 	public float JumpHeight = 5f;
 	public float timeToJumpApex = 0.5f;
@@ -80,7 +81,7 @@ public class Player1 : MonoBehaviour
 
 	void Update ()
 	{
-		Vector2 movement = new Vector2 (Input.GetAxisRaw ("P1Horizontal"), Input.GetAxisRaw ("P1Vertical"));
+		Vector2 movement = new Vector2 (Input.GetAxisRaw ("P1HorizontalLStick"), Input.GetAxisRaw ("P1VerticalLStick"));
 		int wallDirX = (controller.collisions.left)? -1: 1;
 
 		float targetVelocityX = movement.x * movementSpeed;
@@ -102,7 +103,6 @@ public class Player1 : MonoBehaviour
 			velocity.y = 0;
 		}
 
-		/*
 		if (Input.GetAxisRaw ("P1Fire1") != 0 && Time.time > nextFire && wallSliding == false)
 		{
 			if (hasFired == false)
@@ -117,7 +117,7 @@ public class Player1 : MonoBehaviour
 		{
 			hasFired = false;
 		}
-		*/
+
 		if (Input.GetButtonDown ("P1Jump"))
 		{
 			if (wallSliding == true)
@@ -152,12 +152,12 @@ public class Player1 : MonoBehaviour
 		if (movement.x > 0 && !facingRight)
 		{
 			Flip ();
-			shotSpawn.rotation = Quaternion.Euler (0, 0, 0);
+			//shotSpawnRotate.SetFacingRight ();
 		}
 		else if (movement.x < 0 && facingRight)
 		{
 			Flip ();
-			shotSpawn.rotation = Quaternion.Euler (0, 180, 0);
+			//shotSpawnRotate.SetFacingLeft ();
 		}
 	}
 
@@ -204,8 +204,10 @@ public class Player1 : MonoBehaviour
 	void Flip ()
 	{
 		facingRight = !facingRight;
-		Vector3 theScale = transform.localScale;
-		theScale.x *= -1;
-		transform.localScale = theScale;
+		//Vector3 theScale = transform.localScale;
+		//theScale.x *= -1;
+		//transform.localScale = theScale;
+		playerSprite.localScale *= -1;
+		//gun.localScale *= -1;
 	}
 }

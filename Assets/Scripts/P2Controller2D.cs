@@ -10,14 +10,10 @@ public class P2Controller2D : RaycastController
 	
 	public CollisionInfo collisions;
 	
-	void Awake ()
+	public override void Start () 
 	{
 		GameObject respawnPoint = GameObject.FindGameObjectWithTag("Respawn");
 		respawn = respawnPoint.GetComponent<Respawn> ();
-	}
-	
-	public override void Start () 
-	{
 		base.Start ();
 		collisions.facingDir = 1;
 	}
@@ -174,7 +170,7 @@ public class P2Controller2D : RaycastController
 
 	void  InnerCollisions (ref Vector3 velocity)
 	{
-		float directionY = Mathf.Sign (velocity.y);
+		/*float directionY = Mathf.Sign (velocity.y);
 		float rayLength = Mathf.Abs (velocity.y) + skinWidth;
 		
 		Vector2 rayOrigin = raycastOrigins.inner;
@@ -185,6 +181,82 @@ public class P2Controller2D : RaycastController
 		if (hit)
 		{
 			if (hit.collider.tag == "Block")
+			{
+				respawn.P2StartRespawn ();
+				Destroy (gameObject);
+			}
+		}
+		*/
+		Vector2 rayOriginBL = raycastOrigins.innerBottomLeft;
+		Vector2 rayOriginBR = raycastOrigins.innerBottomRight;
+		Vector2 rayOriginTL = raycastOrigins.innerTopLeft;
+		Vector2 rayOriginTR = raycastOrigins.innerTopRight;
+		
+		float blBRdis = Vector2.Distance (rayOriginBL, rayOriginBR);
+		float brTRdis = Vector2.Distance (rayOriginBR, rayOriginTR);
+		float trTLdis = Vector2.Distance (rayOriginTR, rayOriginTL);
+		float tlBLdis = Vector2.Distance (rayOriginTL, rayOriginBL);
+
+		RaycastHit2D hit1 = Physics2D.Raycast (rayOriginBL, Vector2.right, blBRdis, collisionMask);
+		RaycastHit2D hit2 = Physics2D.Raycast (rayOriginBR, Vector2.up, brTRdis, collisionMask);
+		RaycastHit2D hit3 = Physics2D.Raycast (rayOriginTR, -Vector2.right, trTLdis, collisionMask);
+		RaycastHit2D hit4 = Physics2D.Raycast (rayOriginTL, -Vector2.up, tlBLdis, collisionMask);
+		
+		Debug.DrawRay (rayOriginBL, Vector2.right * blBRdis, Color.red);
+		Debug.DrawRay (rayOriginBR, Vector2.up * brTRdis, Color.red);
+		Debug.DrawRay (rayOriginTR, -Vector2.right * trTLdis, Color.red);
+		Debug.DrawRay (rayOriginTL, -Vector2.up * tlBLdis, Color.red);
+
+		if (hit1)
+		{
+			if (hit1.collider.tag == "Shot")
+			{
+				respawn.P2StartRespawn ();
+				Destroy (gameObject);
+			}
+			if (hit1.collider.tag == "Block")
+			{
+				respawn.P2StartRespawn ();
+				Destroy (gameObject);
+			}
+		}
+
+		if (hit2)
+		{
+			if (hit2.collider.tag == "Shot")
+			{
+				respawn.P2StartRespawn ();
+				Destroy (gameObject);
+			}
+			if (hit2.collider.tag == "Block")
+			{
+				respawn.P2StartRespawn ();
+				Destroy (gameObject);
+			}
+		}
+
+		if (hit3)
+		{
+			if (hit3.collider.tag == "Shot")
+			{
+				respawn.P2StartRespawn ();
+				Destroy (gameObject);
+			}
+			if (hit3.collider.tag == "Block")
+			{
+				respawn.P2StartRespawn ();
+				Destroy (gameObject);
+			}
+		}
+
+		if (hit4)
+		{
+			if (hit4.collider.tag == "Shot")
+			{
+				respawn.P2StartRespawn ();
+				Destroy (gameObject);
+			}
+			if (hit4.collider.tag == "Block")
 			{
 				respawn.P2StartRespawn ();
 				Destroy (gameObject);
