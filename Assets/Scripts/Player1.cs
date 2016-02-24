@@ -29,10 +29,12 @@ public class Player1 : MonoBehaviour
 	private float nextFire;
 */
 	public static Player1 player;
+	public Respawn respawn;
 
 	P1Controller2D controller;
 
 	public Transform playerSprite;
+	public int health = 3;
 	public float movementSpeed = 5f;
 	public float JumpHeight = 5f;
 	public float timeToJumpApex = 0.5f;
@@ -71,6 +73,8 @@ public class Player1 : MonoBehaviour
 	void Start ()
 	{
 		controller = GetComponent<P1Controller2D>();
+		GameObject respawnPoint = GameObject.FindGameObjectWithTag("Respawn");
+		respawn = respawnPoint.GetComponent<Respawn> ();
 
 		gravity = -(2 * JumpHeight) / Mathf.Pow (timeToJumpApex, 2);
 		jumpVelocity = Mathf.Abs (gravity) * timeToJumpApex;
@@ -158,6 +162,12 @@ public class Player1 : MonoBehaviour
 		{
 			Flip ();
 			//shotSpawnRotate.SetFacingLeft ();
+		}
+
+		if (health <= 0)
+		{
+			respawn.P1StartRespawn ();
+			Destroy (gameObject);
 		}
 	}
 

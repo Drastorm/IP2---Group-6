@@ -5,10 +5,12 @@ using System.Collections;
 public class Player2 : MonoBehaviour 
 {
 	public static Player2 player;
+	public Respawn respawn;
 	
 	P2Controller2D controller;
 
 	public Transform playerSprite;
+	public int health = 3;
 	public float movementSpeed;
 	public float JumpHeight;
 	public float timeToJumpApex = 0.5f;
@@ -47,7 +49,9 @@ public class Player2 : MonoBehaviour
 	void Start ()
 	{
 		controller = GetComponent<P2Controller2D>();
-		
+		GameObject respawnPoint = GameObject.FindGameObjectWithTag("Respawn");
+		respawn = respawnPoint.GetComponent<Respawn> ();
+
 		gravity = -(2 * JumpHeight) / Mathf.Pow (timeToJumpApex, 2);
 		jumpVelocity = Mathf.Abs (gravity) * timeToJumpApex;
 		
@@ -131,6 +135,12 @@ public class Player2 : MonoBehaviour
 		else if (movement.x < 0 && facingRight)
 		{
 			Flip ();
+		}
+
+		if (health <= 0)
+		{
+			respawn.P2StartRespawn ();
+			Destroy (gameObject);
 		}
 	}
 

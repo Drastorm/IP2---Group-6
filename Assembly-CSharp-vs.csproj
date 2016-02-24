@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\DataRelations.cs" />
      <Compile Include="Assets\Scripts\Grid.cs" />
      <Compile Include="Assets\Scripts\Group.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
@@ -58,6 +59,7 @@
      <Compile Include="Assets\Scripts\RaycastController.cs" />
      <Compile Include="Assets\Scripts\Respawn.cs" />
      <Compile Include="Assets\Scripts\Selector.cs" />
+     <Compile Include="Assets\Scripts\Settings.cs" />
      <Compile Include="Assets\Scripts\Shot.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\Scripts\Timer.cs" />

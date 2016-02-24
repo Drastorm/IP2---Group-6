@@ -193,11 +193,6 @@ public class P1Controller2D : RaycastController
 
 		if (hit1)
 		{
-			if (hit1.collider.tag == "Shot")
-			{
-				respawn.P1StartRespawn ();
-				Destroy (gameObject);
-			}
 			if (hit1.collider.tag == "Block")
 			{
 				respawn.P1StartRespawn ();
@@ -207,11 +202,6 @@ public class P1Controller2D : RaycastController
 		
 		if (hit2)
 		{
-			if (hit2.collider.tag == "Shot")
-			{
-				respawn.P1StartRespawn ();
-				Destroy (gameObject);
-			}
 			if (hit2.collider.tag == "Block")
 			{
 				respawn.P1StartRespawn ();
@@ -221,11 +211,6 @@ public class P1Controller2D : RaycastController
 		
 		if (hit3)
 		{
-			if (hit3.collider.tag == "Shot")
-			{
-				respawn.P1StartRespawn ();
-				Destroy (gameObject);
-			}
 			if (hit3.collider.tag == "Block")
 			{
 				respawn.P1StartRespawn ();
@@ -235,11 +220,6 @@ public class P1Controller2D : RaycastController
 		
 		if (hit4)
 		{
-			if (hit4.collider.tag == "Shot")
-			{
-				respawn.P1StartRespawn ();
-				Destroy (gameObject);
-			}
 			if (hit4.collider.tag == "Block")
 			{
 				respawn.P1StartRespawn ();

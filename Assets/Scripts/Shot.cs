@@ -22,7 +22,17 @@ public class Shot : MonoBehaviour
 		if (otherObject.gameObject.tag == "Block" || otherObject.gameObject.tag == "Arena")
 		{
 			//StartCoroutine (OnHit ());
-			Destroy(gameObject);
+			Destroy (gameObject);
+		}
+		if (otherObject.gameObject.tag == "Player")
+		{
+			Player1.player.health--;
+			Destroy (gameObject);
+		}
+		if (otherObject.gameObject.tag == "Player2")
+		{
+			Player2.player.health--;
+			Destroy (gameObject);
 		}
 	}
 	
