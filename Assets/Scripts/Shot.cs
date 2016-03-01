@@ -19,7 +19,7 @@ public class Shot : MonoBehaviour
 			StartCoroutine (OnHit ());
 		}
 		*/
-		if (otherObject.gameObject.tag == "Block" || otherObject.gameObject.tag == "Arena")
+		if (otherObject.gameObject.tag == "Block" || otherObject.gameObject.tag == "Arena" || otherObject.gameObject.tag == "Placed")
 		{
 			//StartCoroutine (OnHit ());
 			Destroy (gameObject);

@@ -1,11 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\GameData.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\P1BowRotate.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameData.cs" Line="41" Column="1" />
-      <File FileName="Assets\Scripts\Player1.cs" Line="46" Column="16" />
-      <File FileName="Assets\Scripts\Player2.cs" Line="37" Column="24" />
-      <File FileName="Assets\Scripts\Settings.cs" Line="44" Column="145" />
+      <File FileName="Assets\Scripts\P1BowRotate.cs" Line="19" Column="4" />
+      <File FileName="Assets\Scripts\GameData.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player1.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player2.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Settings.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Shot.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\P2BowRotate.cs" Line="18" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class P1GunRotate : MonoBehaviour 
+public class P1BowRotate : MonoBehaviour 
 {
 	public Player1 player;
 
@@ -12,6 +12,7 @@ public class P1GunRotate : MonoBehaviour
 		//transform.rotation = Quaternion.Euler ((player.facingRight? 0 : 180), 0, (player.facingRight? angle : -angle));
 		transform.rotation = Quaternion.Euler ((player.facingRight? 0 : 180), 0, angle);
 
+		/*
 		if (player.facingRight == false && angle == 0)
 		{
 			transform.rotation = Quaternion.Euler (0, 180, angle);
