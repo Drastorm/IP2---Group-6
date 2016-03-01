@@ -12,7 +12,7 @@ public class Settings : MonoBehaviour
 
 	public GUIStyle sliderBar;
 	public GUIStyle sliderThumb;
-	public float soundVolume = 0.5f;
+	//public float soundVolume = 0.5f;
 	//public float sfxVolume;
 	//public AudioClip scroll;
 	//public AudioClip confirmClick;
@@ -36,24 +36,29 @@ public class Settings : MonoBehaviour
 			changes.sfxVol = sfxVolume;
 		}
 		*/
-		Rect volumeLbl = new Rect (Screen.width / 2 - 160, Screen.height / 2 - 200, 320, 50);
-		soundVolume = GUI.HorizontalSlider (new Rect(Screen.width / 2 - 160, Screen.height / 2 - 100, 320, 50), soundVolume, 0.00f, 1.00f, sliderBar, sliderThumb);
-		Rect mainMenuBtn = new Rect (Screen.width / 2 - 160, Screen.height / 2 + 200, 320, 50);
+		GameObject data = GameObject.Find ("GameData");
 
-		GUI.DrawTexture (volumeLbl, volume, ScaleMode.StretchToFill, true, 0);
-		GUI.DrawTexture (mainMenuBtn, mainMenuHolder, ScaleMode.StretchToFill, true, 0);
-
-		if (mainMenuBtn.Contains (Event.current.mousePosition))
+		if (data != null)
 		{
-			mainMenuHolder = mainMenuSel;
-			if (Input.GetMouseButtonDown (0))
+			Rect volumeLbl = new Rect (Screen.width / 2 - 160, Screen.height / 2 - 200, 320, 50);
+			GameData.gameData.volume = GUI.HorizontalSlider (new Rect(Screen.width / 2 - 160, Screen.height / 2 - 100, 320, 50), GameData.gameData.volume, 0.00f, 1.00f, sliderBar, sliderThumb);
+			Rect mainMenuBtn = new Rect (Screen.width / 2 - 160, Screen.height / 2 + 200, 320, 50);
+
+			GUI.DrawTexture (volumeLbl, volume, ScaleMode.StretchToFill, true, 0);
+			GUI.DrawTexture (mainMenuBtn, mainMenuHolder, ScaleMode.StretchToFill, true, 0);
+
+			if (mainMenuBtn.Contains (Event.current.mousePosition))
 			{
-				Application.LoadLevel ("MainMenu");
+				mainMenuHolder = mainMenuSel;
+				if (Input.GetMouseButtonDown (0))
+				{
+					Application.LoadLevel ("MainMenu");
+				}
 			}
-		}
-		else
-		{
-			mainMenuHolder = mainMenuUnsel;
+			else
+			{
+				mainMenuHolder = mainMenuUnsel;
+			}
 		}
 	}
 }

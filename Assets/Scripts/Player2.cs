@@ -32,6 +32,9 @@ public class Player2 : MonoBehaviour
 	public float fireRate;
 	private float nextFire;
 	private bool hasFired = false;
+
+	public AudioClip fire;
+	public AudioClip jump;
 	
 	void Awake ()
 	{
@@ -82,6 +85,22 @@ public class Player2 : MonoBehaviour
 			velocity.y = 0;
 		}
 
+		if (Input.GetAxisRaw ("P2Fire1") != 0 && Time.time > nextFire && wallSliding == false)
+		{
+			if (hasFired == false)
+			{
+				nextFire = Time.time + fireRate;
+				Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+				hasFired = true;
+				audio.PlayOneShot (fire);
+			}
+		}
+		
+		if (Input.GetAxisRaw ("P2Fire1") == 0)
+		{
+			hasFired = false;
+		}
+
 		/*
 		if (Input.GetAxisRaw ("P2Fire1") != 0 && Time.time > nextFire && wallSliding == false)
 		{
@@ -106,22 +125,26 @@ public class Player2 : MonoBehaviour
 				{
 					velocity.x = -wallDirX * wallJumpClimb.x;
 					velocity.y = wallJumpClimb.y;
+					audio.PlayOneShot (jump);
 				}
 				else if (movement.x == 0)
 				{
 					velocity.x = -wallDirX * wallJumpOff.x;
 					velocity.y = wallJumpOff.y;
+					audio.PlayOneShot (jump);
 				}
 				else 
 				{
 					velocity.x = -wallDirX * wallLeap.x;
 					velocity.y = wallLeap.y;
+					audio.PlayOneShot (jump);
 				}
 			}
 			
 			if (controller.collisions.below)
 			{
 				velocity.y = jumpVelocity;
+				audio.PlayOneShot (jump);
 			}
 		}
 		

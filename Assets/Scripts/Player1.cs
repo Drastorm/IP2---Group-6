@@ -57,6 +57,9 @@ public class Player1 : MonoBehaviour
 	private float nextFire;
 	private bool hasFired = false;
 
+	public AudioClip fire;
+	public AudioClip jump;
+
 	void Awake ()
 	{
 		if (player == null)
@@ -114,6 +117,7 @@ public class Player1 : MonoBehaviour
 				nextFire = Time.time + fireRate;
 				Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
 				hasFired = true;
+				audio.PlayOneShot (fire);
 			}
 		}
 
@@ -130,22 +134,26 @@ public class Player1 : MonoBehaviour
 				{
 					velocity.x = -wallDirX * wallJumpClimb.x;
 					velocity.y = wallJumpClimb.y;
+					audio.PlayOneShot (jump);
 				}
 				else if (movement.x == 0)
 				{
 					velocity.x = -wallDirX * wallJumpOff.x;
 					velocity.y = wallJumpOff.y;
+					audio.PlayOneShot (jump);
 				}
 				else 
 				{
 					velocity.x = -wallDirX * wallLeap.x;
 					velocity.y = wallLeap.y;
+					audio.PlayOneShot (jump);
 				}
 			}
 
 			if (controller.collisions.below)
 			{
 				velocity.y = jumpVelocity;
+				audio.PlayOneShot (jump);
 			}
 		}
 
